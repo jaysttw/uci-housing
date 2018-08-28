@@ -1,0 +1,73 @@
+Your task is to setup a web service for predicting housing prices on
+city districts using regression and to deploy the service publicly
+(for example, on Heroku). The service should offer an endpoint that
+takes as input certain statistics of the district (defined below), and
+outputs the estimated price of a dwelling.
+
+## Dataset
+
+The pricing data for training a model is provided as a CSV formatted
+file. The columns are as follows:
+
+crime_rate: per capita crime rate in the district
+avg_number_of_rooms: average number of rooms per dwelling
+distance_to_employment_centers: weighted distances to employment
+                                centres in the city
+property_tax_rate: full-value property-tax rate per $10,000
+pupil_teacher_ratio: pupil-teacher ratio in the district
+house_value: Median value of owner-occupied homes in $1000's
+
+## API specification
+
+The web service should have a single HTTP POST endpoint /predict. The
+endpoint should accept a JSON object specifying values for the input
+variables.
+
+Example request (assuming that the server is running on port 5000 on
+localhost):
+
+curl http://localhost:5000/predict -H application/json --data-binary '{
+  "crime_rate": 0.1,
+  "avg_number_of_rooms": 4.0,
+  "distance_to_employment_centers": 6.5,
+  "property_tax_rate": 330.0,
+  "pupil_teacher_ratio": 19.5
+}'
+
+The endpoint should use a regression algorithm to predict the house
+price based on the input variables. The output should include the
+price estimate and standard deviation of the estimate. Example output
+(numerical values are just examples, they are not the expected output
+for the above input):
+
+{
+  "house_value": 15.3,
+  "stddev": 4.8
+}
+
+If the input is invalid (because one of the required variables is
+missing, for example), the server should return a 400 Bad request
+error.
+
+## Technical constraints
+
+There are some constraints that you should respect. These are followed
+by some tips and ideas that you can choose to follow if you wish.
+
+Required:
+
+* The solution should be implemented in Python.
+* The API has to be testable online from Futurice's office.
+* The source code should be shared, either on public repository or a
+  repository that Futurice can access. For example, GitHub would be a
+  good option.
+
+Tips and ideas:
+
+* Aim for a "good enough" level of implementation that you can be
+  proud of, using suitable approaches, structure and tools of your
+  choice.
+* You can use any suitable libraries or frameworks to help you. For
+  example, scikit-learn is one option for implementing the regression,
+  and Flask is a nice web framework.
+* Heroku might be a good place to publish your service.
