@@ -43,15 +43,19 @@ def model_prediction(input):
               ]
     train = np.asarray([input[x] for x in labels]).reshape(1,-1)
     model = sklearn.externals.joblib.load(
-        os.path.join(
-            os.path.pardir,
-            'model.pkl'
+        os.path.abspath(
+            os.path.join(
+                os.path.pardir,
+                'model.pkl'
+            )
         )
     )
     SD = sklearn.externals.joblib.load(
-        os.path.join(
-            os.path.pardir,
-            'SD.pkl'
+        os.path.abspath(
+            os.path.join(
+                os.path.pardir,
+                'SD.pkl'
+            )
         )
     )
     prediction = model.predict(train)
