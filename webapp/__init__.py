@@ -42,18 +42,8 @@ def model_prediction(input):
               'pupil_teacher_ratio'
               ]
     train = np.asarray([input[x] for x in labels]).reshape(1,-1)
-    model = sklearn.externals.joblib.load(
-        os.path.join(
-            os.path.dirname(os.path.abspath(__file__)),
-            'model.pkl'
-        )
-    )
-    SD = sklearn.externals.joblib.load(
-        os.path.join(
-            os.path.dirname(os.path.abspath(__file__)),
-            'SD.pkl'
-        )
-    )
+    model = sklearn.externals.joblib.load('model.pkl')
+    SD = sklearn.externals.joblib.load('SD.pkl')
     prediction = model.predict(train)
     result = {'house_value': prediction[0],
               'stddev': SD}
