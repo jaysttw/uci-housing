@@ -21,7 +21,7 @@ def predict():
 def validate(input):
     labels = {'crime_rate',
               'avg_number_of_rooms',
-              'distance_to_employment_center',
+              'distance_to_employment_centers',
               'property_tax_rate',
               'pupil_teacher_ratio'
               }
@@ -37,7 +37,7 @@ def validate(input):
 def model_prediction(input):
     labels = ['crime_rate',
               'avg_number_of_rooms',
-              'distance_to_employment_center',
+              'distance_to_employment_centers',
               'property_tax_rate',
               'pupil_teacher_ratio'
               ]
